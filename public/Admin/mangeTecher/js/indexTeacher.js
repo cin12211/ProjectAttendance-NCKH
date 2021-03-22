@@ -4,12 +4,13 @@ var listOfTeachers = [];
 
 // Get data teacher and put into "listOfTeachers"
 db.collection("Teachers").onSnapshot(async function (querySnapshot) {
+  listOfTeachers=[];
   await querySnapshot.forEach(function (doc) {
     let tamp = doc.data();
     tamp.docId = doc.id;
     listOfTeachers.push(tamp);
   });
-  console.log(listOfTeachers);
+  
   renderTable(listOfTeachers);
 });
 
@@ -47,6 +48,7 @@ function renderAddElementInTable(e) {
 }
 
 function renderTable(list) {
+  console.log( ' xoa table ')
   clearTable();
   list.forEach((e) => renderAddElementInTable(e));
   if (list.length == 0) {
